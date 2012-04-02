@@ -29,7 +29,7 @@ if ($_conf['ktai']) {
         exit;
     }
     if ($_conf['iphone']) {
-        include P2_BASE_DIR . '/menu_i.php';
+        include P2_WWW_DIR . '/menu_i.php';
         exit;
     }
     require_once P2_LIB_DIR . '/index_print_k.inc.php';
