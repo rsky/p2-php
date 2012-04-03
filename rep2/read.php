@@ -86,7 +86,8 @@ if (!isset($aThread->keyidx)) {
 }
 
 // 板ディレクトリが無ければ作る
-// FileCtl::mkdirFor($aThread->keyidx);
+FileCtl::mkdirFor($aThread->keyidx);
+FileCtl::mkdirFor($aThread->keydat);
 
 $aThread->itaj = P2Util::getItaName($host, $bbs);
 if (!$aThread->itaj) { $aThread->itaj = $aThread->bbs; }
