@@ -148,7 +148,7 @@ EOP;
 
         // {{{ 入力エラーをチェック、判定
 
-        if (!preg_match('/^[0-9A-Za-z_]+$/', $_POST['form_login_id']) || !preg_match('/^[0-9A-Za-z_]+$/', $_POST['form_login_pass'])) {
+        if (!preg_match('/^[0-9A-Za-z_]+$/', $_POST['form_login_id']) || !preg_match('/^[\@-\~]+$/', $_POST['form_login_pass'])) {
             P2Util::pushInfoHtml("<p class=\"info-msg\">rep2 error: 「{$p_str['user']}」名と「{$p_str['password']}」は半角英数字で入力して下さい。</p>");
             $show_login_form_flag = true;
 

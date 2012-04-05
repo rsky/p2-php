@@ -49,7 +49,7 @@ if (isset($_POST['form_new_login_pass'])) {
     $new_login_pass = $_POST['form_new_login_pass'];
 
     // 入力チェック
-    if (!preg_match('/^[0-9A-Za-z_]+$/', $new_login_pass)) {
+    if (!preg_match('/^[\@-\~]+$/', $new_login_pass)) {
         P2Util::pushInfoHtml("<p>rep2 error: {$p_str['password']}を半角英数字で入力して下さい。</p>");
     } elseif ($new_login_pass != $_POST['form_new_login_pass2']) {
         P2Util::pushInfoHtml("<p>rep2 error: {$p_str['password']} と {$p_str['password']} (確認) が一致しませんでした。</p>");
