@@ -166,8 +166,8 @@ function p2_init()
     define('P2_STYLE_DIR', P2_BASE_DIR . '/style');
 
     // スキン
-    define('P2_SKIN_DIR', P2_BASE_DIR . '/skin');
-    define('P2_USER_SKIN_DIR', P2_BASE_DIR . '/user_skin');
+    define('P2_SKIN_DIR', P2_WWW_DIR . '/skin');
+    define('P2_USER_SKIN_DIR', P2_WWW_DIR . '/user_skin');
 
     // }}}
     // {{{ 環境チェックとデバッグ

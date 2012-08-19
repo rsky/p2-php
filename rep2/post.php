@@ -195,7 +195,7 @@ if (!empty($_POST['p2res']) && empty($_POST['newthread'])) {
     $posted = postIt2($host, $bbs, $key, $FROM, $mail, $MESSAGE);
 } else {
     // cookie “Ç‚Ýž‚Ý
-    $cookie_key = $_login->user_u . '/' . P2Util::normalizeHostName($host);
+    $cookie_key = $_login->user_u . '/' . P2Util::normalizeHostName(P2Util::isHostBbsPink($host) ? 'www.bbspink.com' : P2Util::isHost2chs($host) ? 'www.2ch.net' : $host); // ”E–@’ ‘Î‰ž
     if ($p2cookies = CookieDataStore::get($cookie_key)) {
         if (is_array($p2cookies)) {
             if (array_key_exists('expires', $p2cookies)) {
