@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>rep2 exapck by rsky</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">rep2 exapck</h1>
+        <p class="header">The server side 2ch viewer written in PHP</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/rsky/p2-php/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/rsky/p2-php/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/rsky/p2-php">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rsky">rsky</a></p>
+
+
+      </header>
+      <section>
+        <h1>rep2 expack</h1>
+
+<p>なんだかんだで歴史の長い、PHPでつくられたサーバーサイド2ちゃんねるビューワーです。</p>
+
+<p>作りがレガシーなのは作っているひとがいちばんよくわかっているので、勘弁してつかあさい。</p>
+
+<p><a href="https://github.com/rsky/page2">次世代版建設予定地</a></p>
+
+<h2>セットアップ</h2>
+
+<h3>Git &amp; Composerで</h3>
+
+<ol>
+<li>
+<p>本体をclone</p>
+
+<pre>git clone git://github.com/rsky/p2-php.git
+cd p2-php</pre>
+</li>
+<li>
+<p>依存ライブラリをダウンロード</p>
+
+<pre>git submodule update --init
+curl -O http://getcomposer.org/composer.phar
+php -d detect_unicode=0 composer.phar install</pre>
+</li>
+<li>
+<p>Webサーバが書き込めるようにディレクトリのアクセス権をセット<br>
+(CGI/suEXECIやCLI/Built-in web serverでは不要)</p>
+
+<pre>chmod 0777 data/* rep2/ic</pre>
+</li>
+</ol><h3>Zipでくれ</h3>
+
+<p>つ<a href="https://github.com/rsky/p2-php/tags">Tags</a></p>
+
+<h2>動作環境</h2>
+
+<p>以下のコマンドを実行して、全ての項目で <code>OK</code> が出たなら大丈夫です。</p>
+
+<p>何かエラーが出たらがんばって環境を整えてください。</p>
+
+<pre><code>php scripts/p2cmd.php check
+</code></pre>
+
+<h2>Built-in web serverで使ってみる (PHP 5.4+)</h2>
+
+<p>PHP 5.4の新機能、<a href="http://docs.php.net/manual/ja/features.commandline.webserver.php">ビルトインウェブサーバー</a>で簡単に試せます。</p>
+
+<p>ルートディレクトリで以下のようにすると、Webサーバーの設定をしなくても <code>http://localhost:8080/</code> でrep2を使えます。<strong>(Windowsでも!)</strong></p>
+
+<pre><code>php -S localhost:8080 -t rep2 router.php
+</code></pre>
+
+<p>moriyoshi++</p>
+
+<h2>画像を自動で保存したい</h2>
+
+<p>スレに貼られている画像を自動で保存する機能、<strong>ImageCache2</strong>があります。</p>
+
+<p>see also <a href="https://github.com/rsky/p2-php/blob/master/doc/ImageCache2/README.txt">doc/ImageCache2/README.txt</a>, <a href="https://github.com/rsky/p2-php/blob/master/doc/ImageCache2/INSTALL.txt">doc/ImageCache2/INSTALL.txt</a></p>
+
+<h3>準備</h3>
+
+<ol>
+<li><p>SQLite以外のデータベースを使う場合はデータベースサーバーを立ち上げておく。  </p></li>
+<li>
+<p>conf/conf_admin_ex.inc.phpでImageCache2を有効にする。</p>
+
+<pre>$_conf['expack.ic2.enabled'] = 3;</pre>
+</li>
+<li>
+<p>conf/conf_ic2.inc.phpで<a href="http://pear.php.net/manual/ja/package.database.db.intro-dsn.php">DSN</a>を設定する。</p>
+
+<pre>$_conf['expack.ic2.general.dsn'] = 'mysql://username:password@localhost:3306/database';</pre>
+</li>
+<li>
+<p>setupスクリプトを実行する。</p>
+
+<pre>php scripts/ic2.php setup</pre>
+</li>
+</ol><h3>注意</h3>
+
+<ul>
+<li>PHP 5.4ではSQLite2がサポートされなくなったので、ImageCache2を使いたいときはMySQLかPostgreSQLが必要です。</li>
+<li>ホストに<code>localhost</code>を指定して接続できないときは、代わりに<code>127.0.0.1</code>にしてみてください。</li>
+</ul><h2>設定を変えたい</h2>
+
+<p>細かい挙動の変更は <code>メニュー &gt; 設定管理 &gt; ユーザー設定編集</code> から行えます。</p>
+
+<p>Webブラウザから変更できない項目は <a href="https://github.com/rsky/p2-php/blob/master/conf/conf_admin.inc.php">conf/conf_admin.inc.php</a> (基本), <a href="https://github.com/rsky/p2-php/blob/master/conf/conf_admin_ex.inc.php">conf/conf_admin_ex.inc.php</a> (拡張パック), <a href="https://github.com/rsky/p2-php/blob/master/conf/conf_ic2.inc.php">conf/conf_ic2.inc.php</a> (ImageCache2) を直接編集します。</p>
+
+<p>どういうことができるか書き起こすのが面倒なので設定ファイルのコメントを見てください。</p>
+
+<h2>更新</h2>
+
+<h3>本体</h3>
+
+<pre><code>git pull
+</code></pre>
+
+<h3>PEARライブラリ</h3>
+
+<pre><code>git submodule foreach 'git pull origin master'
+git submodule update
+</code></pre>
+
+<h3>composer.jsonが更新されたとき</h3>
+
+<pre><code>php -d detect_unicode=0 composer.phar update
+</code></pre>
+
+<h2>古いバージョンからの移行</h2>
+
+<p><a href="https://github.com/rsky/p2-php/commit/144c0e91c0822dc6ba5c237ec9759b3c98bd6a0d">144c0e91c</a>でルートディレクトリにあったWeb経由でアクセスされるファイルをrep2ディレクトリに移動する等、ファイル構成を変更しました。</p>
+
+<p>既存のデータをそのまま使い続けるには、conf/conf_user_admin.inc.php および conf/conf_ic2.inc.php を下記のように旧版相当の設定にします。</p>
+
+<h3>conf/conf_user_admin.inc.php</h3>
+
+<p>※ dataディレクトリの位置はindex.phpがある階層よりひとつ上。</p>
+
+<pre><code>$_conf['data_dir'] = P2_BASE_DIR . '/data';
+$_conf['dat_dir']  = P2_BASE_DIR . '/data';
+$_conf['idx_dir']  = P2_BASE_DIR . '/data';
+$_conf['pref_dir'] = P2_BASE_DIR . '/data';
+</code></pre>
+
+<h3>conf/conf_ic2.inc.php</h3>
+
+<pre><code>$_conf['expack.ic2.general.cachedir'] = P2_WWW_DIR . '/cache';
+$_conf['expack.ic2.general.cacheuri'] = './cache';
+// 以下はSQLite2の場合のみ
+$_conf['expack.ic2.general.dsn'] = 'sqlite:///' . P2_WWW_DIR . '/cache/imgcache.sqlite';
+</code></pre>
+
+<p>※ SQLite2な人は rep2/cache/imgcache.sqlite を data/db/imgcache.sqlite に移動して
+DSNは <code>"sqlite:///{$_conf['db_dir']}/imgcache.sqlite"</code> がおすすめ。</p>
+
+<h2>Authors &amp; Contributors</h2>
+
+<ul>
+<li>
+<strong>aki</strong> <em>(original)</em> <a href="http://akid.s17.xrea.com/">http://akid.s17.xrea.com/</a>
+</li>
+<li>
+<strong>rsk</strong> <em>(expack)</em> <a href="https://github.com/rsky/p2-php/">https://github.com/rsky/p2-php/</a>
+</li>
+<li>
+<strong>unpush</strong> <a href="https://github.com/unpush/p2-php/">https://github.com/unpush/p2-php/</a>
+</li>
+<li>
+<strong>thermon</strong> <a href="https://github.com/thermon/p2-php/">https://github.com/thermon/p2-php/</a>
+</li>
+<li>
+<strong>part32の892</strong> <em>(+live)</em> <a href="http://plus-live.main.jp/">http://plus-live.main.jp/</a>
+</li>
+<li><strong>2ch p2/rep2スレの&gt;&gt;1-1000</strong></li>
+</ul><h2>License</h2>
+
+<p>see <a href="https://github.com/rsky/p2-php/blob/master/LICENSE.txt">LICENSE.txt</a></p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
