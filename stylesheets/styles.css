@@ -300,6 +300,10 @@ a.github {
 	background: url(../images/octocat-small.png) no-repeat 1px;
 }
 
+a.twitter {
+	background: url(../images/twitter-bird.png) no-repeat 0px 2px;
+}
+
 a.noicon {
 	background: none;
 	padding-left: 2px;
