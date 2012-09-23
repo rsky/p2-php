@@ -1,0 +1,4 @@
+auto: true
+server: true
+markdown: rdiscount
+github: https://github.com/rsky/p2-php/

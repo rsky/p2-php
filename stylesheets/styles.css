@@ -300,6 +300,11 @@ a.github {
 	background: url(../images/octocat-small.png) no-repeat 1px;
 }
 
+a.noicon {
+	background: none;
+	padding-left: 2px;
+}
+
 a.buttons:hover {
 	color: #fff;
 	text-decoration: none;
