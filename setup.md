@@ -27,7 +27,8 @@ PHP 5.4の新機能、[ビルトインウェブサーバー](http://docs.php.net
 
 以下のようにすると、Webサーバーの設定をしなくても `http://localhost:8080/` でrep2を使えます。**(Windowsでも!)**
 
-    php -S localhost:8080 -t rep2
+    cd rep2
+    php -S localhost:8080 web.php
 
 
 ## 画像を自動で保存したい
