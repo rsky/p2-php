@@ -1,0 +1,19 @@
+ImageCache2\Entity\Ignore:
+  type: entity
+  table: ic2_blacklist
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    uri:
+      type: string
+      nullable: true
+    size:
+      type: integer
+    md5:
+      type: string
+      length: 32
+    type:
+      type: smallint

@@ -9,23 +9,62 @@
 $_conf['expack.ic2.general.cachedir'] = P2_WWW_DIR . '/ic';
 $_conf['expack.ic2.general.cacheuri'] = './ic';
 
-// DSN (DBに接続するためのデータソース名)
-// @link http://jp.pear.php.net/manual/ja/package.database.db.intro-dsn.php
-// 例)
-//  MySQL:       'mysql://username:password@localhost:3306/database'
-//  PostgreSQL:  'pgsql://username:password@localhost:5432/database'
-//  SQLite2:     'sqlite:///' . $_conf['db_dir'] . '/imgcache.sqlite'
-// 注1: username,password,databaseは実際のものと読み替える。
-// 注2: MySQL,PosrgreSQLでは予めデータベースを作っておく。
-$_conf['expack.ic2.general.dsn'] = "";
+/*
+DB接続設定
+@link http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
+@link http://www.php.net/manual/ja/ref.pdo-mysql.connection.php
+@link http://www.php.net/manual/ja/ref.pdo-pgsql.connection.php
+@link http://www.php.net/manual/ja/ref.pdo-sqlite.connection.php
+例)
+  MySQL: (TCP)
+    array(
+        'driver'    => 'pdo_mysql',
+        'user'      => 'user',
+        'password'  => 'secret',
+        'host'      => 'localhost',
+        'port'      => 3306,
+        'dbname'    => 'imagecache2',
+        'charset'   => 'utf8',
+    );
+  MySQL: (UNIX socket)
+    array(
+        'driver'    => 'pdo_mysql',
+        'user'      => 'user',
+        'password'  => 'secret',
+        'unix_socket'   => '/opt/local/var/run/mysql55/mysqld.sock',
+        'dbname'    => 'imagecache2',
+        'charset'   => 'utf8',
+    );
+  PostgreSQL:
+      array(
+          'driver'    => 'pdo_pgsql',
+          'user'      => 'user',
+          'password'  => 'secret',
+          'host'      => 'localhost',
+          'port'      => 5432,
+          'dbname'    => 'imagecache2',
+      );
+  SQLite: (SQLite3で、SQLite2データベースとの互換性なし。移行にはダンプ&リストアが必要)
+      array(
+          'driver'  => 'pdo_sqlite',
+          'path'    => $_conf['db_dir'] . '/imgcache2.sqlite3',
+      );
+*/
+$_conf['expack.ic2.general.database'] = array(
+    'driver'  => 'pdo_sqlite',
+    'path'    => $_conf['db_dir'] . '/imgcache2.sqlite3',
+);
 
 // DBで使うテーブル名
+/** @deprecated */
 $_conf['expack.ic2.general.table'] = "imgcache";
 
 // 削除済み＆再ダウンロードしない画像リストのテーブル名
+/** @deprecated */
 $_conf['expack.ic2.general.blacklist_table'] = "ic2_blacklist";
 
 // エラーを記録するテーブル名
+/** @deprecated */
 $_conf['expack.ic2.general.error_table'] = "ic2_errors";
 
 // エラーを記録する最大の行数

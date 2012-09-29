@@ -1,0 +1,37 @@
+ImageCache2\Entity\Image:
+  type: entity
+  table: imgcache
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    uri:
+      type: string
+      nullable: true
+    host:
+      type: string
+      nullable: true
+    name:
+      type: string
+      nullable: true
+    size:
+      type: integer
+    md5:
+      type: string
+      length: 32
+    width:
+      type: smallint
+    height:
+      type: smallint
+    mime:
+      type: string
+      length: 50
+    time:
+      type: integer
+    rank:
+      type: integer
+    memo:
+      type: text
+      nullable: true

@@ -1,0 +1,15 @@
+ImageCache2\Entity\Error:
+  type: entity
+  table: ic2_errors
+  fields:
+    uri:
+      type: string
+      nullable: true
+    errcode:
+      type: string
+      size: 64
+    errmsg:
+      type: text
+      nullable: true
+    occured:
+      type: integer

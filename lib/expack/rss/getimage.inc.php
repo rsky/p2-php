@@ -2,6 +2,7 @@
 /**
  * rep2expck - RSS画像キャッシュ
  */
+use ImageCache2\Entity\Image;
 
 require_once P2EX_LIB_DIR . '/ImageCache2/bootstrap.php';
 
@@ -79,12 +80,12 @@ function rss_get_image_ic2($src_url, $memo='')
         // ウィルスに感染していたファイルのとき
         if ($icdb->mime == 'clamscan/infected') {
             $aborn_img = array('./img/x04.png', 'width="32" height="32"');
-            return array($aborn_img, $aborn_img, $aborn_img, P2_IMAGECACHE_ABORN);
+            return array($aborn_img, $aborn_img, $aborn_img, Image::ABORN);
         }
         // あぼーん画像のとき
         if ($icdb->rank < 0) {
             $virus_img = array('./img/x01.png', 'width="32" height="32"');
-            return array($virus_img, $virus_img, $virus_img, P2_IMAGECACHE_VIRUS);
+            return array($virus_img, $virus_img, $virus_img, Image::VIRUS);
         }
 
         // オリジナルがキャッシュされているときは画像を直接読み込む
@@ -142,7 +143,7 @@ function rss_get_image_ic2($src_url, $memo='')
     $result[] = array($img_url, $img_size);
     $result[] = array($thumb_url, $thumb_size);
     $result[] = array($thumb_k_url, $thumb_k_size);
-    $result[] = P2_IMAGECACHE_OK;
+    $result[] = Image::OK;
 
     return $result;
 }

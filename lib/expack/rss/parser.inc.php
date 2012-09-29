@@ -2,6 +2,7 @@
 /**
  * rep2expack - RSS Parser
  */
+use ImageCache2\Entity\Image;
 
 require_once P2EX_LIB_DIR . '/rss/common.inc.php';
 require_once 'XML/RSS.php';
@@ -375,14 +376,14 @@ function rss_desc_tag_cleaner($tag)
                     }
                     if (P2_RSS_IMAGECACHE_AVAILABLE) {
                         $image = rss_get_image($value, $GLOBALS['channel']['title']);
-                        if ($image[3] != P2_IMAGECACHE_OK) {
+                        if ($image[3] != Image::OK) {
                             if ($_conf['ktai']) {
                                 // あぼーん画像 - 携帯
                                 switch ($image[3]) {
-                                    case P2_IMAGECACHE_ABORN:return '[p2:あぼーん画像]';
-                                    case P2_IMAGECACHE_BROKEN: return '[p2:壊]'; // これと
-                                    case P2_IMAGECACHE_LARGE: return '[p2:大]'; // これは現状では無効
-                                    case P2_IMAGECACHE_VIRUS: return '[p2:ウィルス警告]';
+                                    case Image::ABORN:  return '[p2:あぼーん画像]';
+                                    case Image::BROKEN: return '[p2:壊]'; // これと
+                                    case Image::LARGE:  return '[p2:大]'; // これは現状では無効
+                                    case Image::VIRUS:  return '[p2:ウィルス警告]';
                                     default : return '[p2:unknown error]'; // 予備
                                 }
                             } else {
@@ -398,7 +399,7 @@ function rss_desc_tag_cleaner($tag)
                         }
                     }
                     // イメージキャッシュが無効のとき画像は表示しない
-                    break '';
+                    return '';
                 case 'alt':
                     if ($element == 'img' && !P2_RSS_IMAGECACHE_AVAILABLE) {
                         return ' [img:'.$value.']'; // 画像はalt属性を代わりに表示
