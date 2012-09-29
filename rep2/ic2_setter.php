@@ -88,7 +88,7 @@ if (!empty($_GET['upload']) && !empty($_FILES['upimg'])) {
         // DBに記録する共通データを設定
         $f_host = 'localhost';
         $f_time = time();
-        $f_memo = isset($_POST['memo']) ? ImageCache2_DataObject_Images::staticUniform($_POST['memo'], 'CP932') : '';
+        $f_memo = isset($_POST['memo']) ? ImageCache2_Normalizer::normalize($_POST['memo'], 'CP932') : '';
         $f_rank = isset($_POST['rank']) ? intval($_POST['rank']) : 0;
         if ($f_rank > 5) {
             $f_rank = 5;

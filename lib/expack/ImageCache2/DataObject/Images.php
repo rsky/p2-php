@@ -51,15 +51,6 @@ class ImageCache2_DataObject_Images extends ImageCache2_DataObject_Common
     }
 
     // }}}
-    // {{{ uniform()
-
-    // 検索用に文字列をフォーマットする
-    public function uniform($str, $enc, $to_lower = true)
-    {
-        return self::staticUniform($str, $enc, $to_lower);
-    }
-
-    // }}}
     // {{{ ic2_isError()
 
     public function ic2_isError($url)
@@ -88,28 +79,6 @@ class ImageCache2_DataObject_Images extends ImageCache2_DataObject_Common
         }
 
         return false;
-    }
-
-    // }}}
-    // {{{ staticUniform()
-
-    /**
-     * 検索用に文字列をフォーマットする
-     */
-    public static function staticUniform($str, $enc, $to_lower = true)
-    {
-        if (!$enc) {
-            $enc = mb_detect_encoding($str, 'CP932,UTF-8,CP51932,JIS');
-        }
-        if (strcasecmp($enc, 'UTF-8') !== 0) {
-            $str = mb_convert_encoding($str, 'UTF-8', $enc);
-        }
-        $str = mb_convert_kana($str, 'KVas', 'UTF-8');
-        if ($to_lower) {
-            $str = mb_strtolower($str, 'UTF-8');
-        }
-
-        return preg_replace('/\s+/u', ' ', trim($str));
     }
 
     // }}}

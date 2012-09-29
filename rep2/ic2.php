@@ -180,7 +180,7 @@ $mtime = -1;
 $retry = false;
 
 if ($memo !== null) {
-    $memo = $search->uniform($memo, 'CP932');
+    $memo = ImageCache2_Normalizer::normalize($memo, 'CP932');
 }
 
 if ($doDL) {

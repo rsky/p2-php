@@ -188,7 +188,7 @@ if ($qf->validate() && ($params = $qf->getSubmitValues()) && isset($params['uri'
         $extra_params .= '&ref=' . rawurlencode($params['ref']);
     }
     if (isset($params['memo']) && strlen(trim($params['memo'])) > 0) {
-        $new_memo = ImageCache2_DataObject_Images::staticUniform($params['memo'], 'CP932');
+        $new_memo = ImageCache2_Normalizer::normalize($params['memo'], 'CP932');
         $_memo_en = rawurlencode($new_memo);
         // ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Éhtmlspecialchars()‚³‚ê‚é‚Ì‚ÅA‚±‚±‚Å‚Í&‚ğ&amp;‚É‚µ‚È‚¢
         $extra_params .= '&memo=' . $_memo_en . '&' . $_conf['detect_hint_q_utf8'];

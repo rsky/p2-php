@@ -17,7 +17,7 @@ function getIC2ImageCount($key, $threshold = null) {
 
     $db = $icdb->getDatabaseConnection();
     $db_class = strtolower(get_class($db));
-    $keys = explode(' ', $icdb->uniform($key, 'CP932'));
+    $keys = explode(' ', ImageCache2_Normalizer::normalize($key, 'CP932'));
     foreach ($keys as $k) {
         $operator = 'LIKE';
         $wildcard = '%';

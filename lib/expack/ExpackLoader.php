@@ -179,7 +179,7 @@ class ExpackLoader
         }
 
         if ($aShowThread->thumbnailer->ini['General']['automemo']) {
-            $aShowThread->img_memo = ImageCache2_DataObject_Images::staticUniform($aShowThread->thread->ttitle, 'CP932');
+            $aShowThread->img_memo = ImageCache2_Noramlizer::normalize($aShowThread->thread->ttitle, 'CP932');
             $aShowThread->img_memo_query = '&amp;memo=' . rawurlencode($aShowThread->img_memo);
             $aShowThread->img_memo_query .= '&amp;' . $_conf['detect_hint_q_utf8'];
         } else {

@@ -423,7 +423,7 @@ if (!($threshold == -1 && $compare == '>=')) {
 
 // キーワード検索をするとき
 if ($key !== '') {
-    $keys = explode(' ', $icdb->uniform($key, 'CP932', $field == 'memo'));
+    $keys = explode(' ', ImageCache2_Normalizer::normalize($key, 'CP932', $field == 'memo'));
     foreach ($keys as $k) {
         $operator = 'LIKE';
         $wildcard = '%';
@@ -497,7 +497,7 @@ if (isset($_POST['edit_submit']) && !empty($_POST['change'])) {
         // メモを追加
         if (!empty($_POST['addmemo'])) {
             $newmemo = get_magic_quotes_gpc() ? stripslashes($_POST['addmemo']) : $_POST['addmemo'];
-            $newmemo = $icdb->uniform($newmemo, 'CP932');
+            $newmemo = ImageCache2_Normalizer::normalize($newmemo, 'CP932');
             if ($newmemo !== '') {
                  ImageCache2_DatabaseManager::addMemo($target, $newmemo);
             }
@@ -525,7 +525,7 @@ if (isset($_POST['edit_submit']) && !empty($_POST['change'])) {
                 $newmemo = get_magic_quotes_gpc() ? stripslashes($_POST['img'][$id]['memo']) : $_POST['img'][$id]['memo'];
                 $data = array(
                     'rank' => intval($_POST['img'][$id]['rank']),
-                    'memo' => $icdb->uniform($newmemo, 'CP932')
+                    'memo' => ImageCache2_Normalizer::normalize($newmemo, 'CP932')
                 );
                 if (0 < $id && -1 <= $data['rank'] && $data['rank'] <= 5) {
                     $updated[$id] = $data;
