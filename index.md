@@ -2,8 +2,8 @@
 title: rep2 機能拡張パック
 layout: home
 download_site: https://github.com/downloads/rsky/p2-php/
-version_date: '120925'
-version_time: '0800'
+version_date: '120930'
+version_time: '2250'
 ---
 # rep2 機能拡張パック
 
