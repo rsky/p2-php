@@ -63,10 +63,6 @@ abstract class AbstractDataStore
     /**
      * _getKVS() を呼び出してP2KeyValueStoreオブジェクトを取得する
      *
-     * 現在は self::getKVS() の都合でこれより下のメソッドを
-     * サブクラスにコピペという保守性が極めて悪い実装となっている。
-     * 将来は PHP 5.3 縛りにして static::getKVS() に変更したい。
-     *
      * @param void
      * @return P2KeyValueStore
      */
@@ -84,8 +80,7 @@ abstract class AbstractDataStore
      */
     static public function get($key)
     {
-        return self::getKVS()->get($key);
-            // static::getKVS()
+        return static::getKVS()->get($key);
     }
 
     // }}}
@@ -103,8 +98,7 @@ abstract class AbstractDataStore
      */
     static public function set($key, $value)
     {
-        $kvs = self::getKVS();
-            // static::getKVS()
+        $kvs = static::getKVS();
         if ($kvs->exists($key)) {
             return $kvs->update($key, $value);
         } else {
@@ -124,8 +118,7 @@ abstract class AbstractDataStore
      */
     static public function delete($key)
     {
-        return self::getKVS()->delete($key);
-            // static::getKVS()
+        return static::getKVS()->delete($key);
     }
 
     // }}}
@@ -140,8 +133,7 @@ abstract class AbstractDataStore
      */
     static public function clear($prefix = null)
     {
-        return self::getKVS()->clear($prefix);
-            // static::getKVS();
+        return static::getKVS()->clear($prefix);
     }
 
     // }}}

@@ -81,7 +81,7 @@ $_defaults = array(
     'order' => $ini['Viewer']['order'],
     'sort'  => $ini['Viewer']['sort'],
     'field' => $ini['Viewer']['field'],
-    'key'   => '',
+    'keyword'   => '',
     'threshold' => $ini['Viewer']['threshold'],
     'compare' => $ini['Viewer']['compare'],
     'mode' => $_default_mode,
@@ -253,7 +253,7 @@ $qfe['rows']      = $qf->addElement('text', 'rows', '縦', array('size' => 3, 'ma
 $qfe['order']     = $qf->addElement('select', 'order', '並び順', $_order);
 $qfe['sort']      = $qf->addElement('select', 'sort', '方向', $_sort);
 $qfe['field']     = $qf->addElement('select', 'field', 'フィールド', $_field);
-$qfe['key']       = $qf->addElement('text', 'key', 'キーワード', array('size' => 20));
+$qfe['keyword']   = $qf->addElement('text', 'keyword', 'キーワード', array('size' => 20));
 $qfe['compare']   = $qf->addElement('select', 'compare', '比較方法', $_compare);
 $qfe['threshold'] = $qf->addElement('select', 'threshold', 'しきい値', $_threshold);
 $qfe['thumbtype'] = $qf->addElement('select', 'thumbtype', 'サムネイルタイプ', $_thumbtype);
@@ -333,7 +333,7 @@ $rows      = ImageCache2_ParameterUtility::getValidValue('rows',   $_defaults['r
 $order     = ImageCache2_ParameterUtility::getValidValue('order',  $_defaults['order']);
 $sort      = ImageCache2_ParameterUtility::getValidValue('sort',   $_defaults['sort'] );
 $field     = ImageCache2_ParameterUtility::getValidValue('field',  $_defaults['field']);
-$key       = ImageCache2_ParameterUtility::getValidValue('key',    $_defaults['key']);
+$key       = ImageCache2_ParameterUtility::getValidValue('keyword',   $_defaults['keyword']);
 $threshold = ImageCache2_ParameterUtility::getValidValue('threshold', $_defaults['threshold'], 'intval');
 $compare   = ImageCache2_ParameterUtility::getValidValue('compare',   $_defaults['compare']);
 $mode      = ImageCache2_ParameterUtility::getValidValue('mode',      $_defaults['mode'], 'intval');
@@ -360,7 +360,7 @@ if ($_conf['ktai']) {
     $lightbox = false;
     $mode = 1;
     $inum = (int) $ini['Viewer']['inum'];
-    $overwritable_params = array('order', 'sort', 'field', 'key', 'threshold', 'compare');
+    $overwritable_params = array('order', 'sort', 'field', 'keyword', 'threshold', 'compare');
 
     // 絵文字を読み込む
     require_once P2_LIB_DIR . '/emoji.inc.php';
@@ -373,7 +373,7 @@ if ($_conf['ktai']) {
     if (!empty($_GET['show_iv2_kfilter'])) {
         !defined('P2_NO_SAVE_PACKET') && define('P2_NO_SAVE_PACKET', true);
         $r = new HTML_QuickForm_Renderer_ObjectFlexy($flexy);
-        $qfe['key']->removeAttribute('size');
+        $qfe['keyword']->removeAttribute('size');
         $qf->updateAttributes(array('method' => 'get'));
         $qf->accept($r);
         $qfObj = $r->toObject();
@@ -452,7 +452,7 @@ if ($key !== '') {
         }
         $icdb->whereAddQuoted($field, $operator, $expr);
     }
-    $qfe['key']->setValue($key);
+    $qfe['keyword']->setValue($key);
 }
 
 // 重複画像をスキップするとき
@@ -687,7 +687,7 @@ if ($all === 0) {
             '_hint' => $_conf['detect_hint'], 'mode' => $mode,
             'page' => $page, 'cols' => $cols, 'rows' => $rows,
             'order' => $order, 'sort' => $sort,
-            'field' => $field, 'key' => $key,
+            'field' => $field, 'keyword' => $key,
             'compare' => $compare, 'threshold' => $threshold,
             'thumbtype' => $thumbtype
         );
