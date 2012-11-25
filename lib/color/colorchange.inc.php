@@ -31,13 +31,13 @@ function HSV2RGB($hsv)
 
 function Lab2RGB($Lab)
 {
-    list($L, $a, $b) = colorchange_getargs($lab, 'L*', 'a*', 'b*');
+    list($L, $a, $b) = colorchange_getargs($Lab, 'L*', 'a*', 'b*');
     return ColorChange::lab2rgb($L, $a, $b);
 }
 
 function LCh2RGB($LCh)
 {
-    list($L, $C, $h) = colorchange_getargs($lab, 'L*', 'C*', 'h');
+    list($L, $C, $h) = colorchange_getargs($LCh, 'L*', 'C*', 'h');
     return ColorChange::lch2rgb($L, $C, $h);
 }
 
@@ -85,7 +85,7 @@ function Lab2LCh($Lab)
 
 function LCh2Lab($LCh)
 {
-    list($L, $C, $h) = colorchange_getargs($Lab, 'L*', 'C*', 'h');
+    list($L, $C, $h) = colorchange_getargs($LCh, 'L*', 'C*', 'h');
     return ColorChange::lch2lab($L, $C, $h);
 }
 

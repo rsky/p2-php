@@ -100,7 +100,7 @@ class Update extends Command
      */
     private function updateComposer(OutputInterface $output, $verbose = false)
     {
-        $command = escapeshellarg(PHP_BINARY)
+        $command = escapeshellarg($this->getPhpBin())
                  . ' -d detect_unicode=0 composer.phar selfupdate';
 
         return $this->execCommand($command, $output) === 0;
@@ -116,9 +116,25 @@ class Update extends Command
      */
     private function updateVendor(OutputInterface $output, $verbose = false)
     {
-        $command = escapeshellarg(PHP_BINARY)
+        $command = escapeshellarg($this->getPhpBin())
                  . ' -d detect_unicode=0 composer.phar update';
 
         return $this->execCommand($command, $output) === 0;
+    }
+
+    /**
+     * Get PHP executable's path
+     *
+     * @param void
+     *
+     * @return string
+     */
+    private function getPhpBin()
+    {
+        if (defined('PHP_BINARY')) {
+            return PHP_BINARY;
+        }
+
+        return PHP_BINDIR . DIRECTORY_SEPARATOR . 'php';
     }
 }
