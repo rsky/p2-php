@@ -1,7 +1,7 @@
 ---
 title: rep2 機能拡張パック
 layout: home
-download_site: https://github.com/downloads/rsky/p2-php/
+download_site: http://page2.skr.jp/rep2/archives/
 version_date: '121126'
 version_time: '0050'
 ---
