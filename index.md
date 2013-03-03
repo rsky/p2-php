@@ -2,8 +2,8 @@
 title: rep2 機能拡張パック
 layout: home
 download_site: http://page2.skr.jp/rep2/archives/
-version_date: '121126'
-version_time: '0050'
+version_date: '130305'
+version_time: '0525'
 ---
 # rep2 機能拡張パック
 
