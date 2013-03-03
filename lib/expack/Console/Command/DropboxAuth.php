@@ -22,7 +22,7 @@ class DropboxAuth extends sfConsoleCommand
         ->setDefinition(array(
             new InputOption('key', null,  InputOption::VALUE_REQUIRED, 'Dropbox app key'),
             new InputOption('secret', null,  InputOption::VALUE_REQUIRED, 'Dropbox app secret'),
-            //new InputOption('sandbox', null, InputOption::VALUE_NONE, 'Authorize as a sandbox app')
+            new InputOption('full-access', null, InputOption::VALUE_NONE, 'Enable full access to Dropbox')
         ));
     }
 
@@ -38,13 +38,13 @@ class DropboxAuth extends sfConsoleCommand
 
         $key = $input->getOption('key');
         $secret = $input->getOption('secret');
-        /*if ($input->getOption('sandbox')) {
-            $accessType = Dropbox\AccessType::AppFolder();
-            $accessTypeName = 'AppFolder';
-        } else {*/
+        if ($input->getOption('full-access')) {
             $accessType = Dropbox\AccessType::FullDropbox();
             $accessTypeName = 'FullDropbox';
-        //}
+        } else {
+            $accessType = Dropbox\AccessType::AppFolder();
+            $accessTypeName = 'AppFolder';
+        }
 
         $appInfo = new Dropbox\AppInfo($key, $secret, $accessType);
         $dbxConfig = new Dropbox\Config($appInfo, $clientIdentifier);

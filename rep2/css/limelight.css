@@ -87,7 +87,7 @@ div.limelight-indicator {
 
 table.limelight-toolbar {
 	position: absolute;
-	bottom: 5px;
+	top: 10px;
 	left: 0;
 	z-index: 120;
 	margin: 0;

@@ -118,6 +118,14 @@ $_conf['expack.aas.unknown_char'] = "?"; // ("?")
 $_conf['expack.aas.output_charset'] = "CP51932"; // ("CP51932")
 
 // }}}
+// {{{ Dropbox
+
+// アップロード先パス接頭辞
+// 必ず "/" で始まること。また、最後の "/" 以降に文字があれば、
+// それはアップロードされたファイル名の接頭辞になる。
+$_conf['expack.dropbox.upload_prefix'] = "/uploads/"; // ("/uploads/")
+
+// }}}
 // {{{ その他
 
 // お気にセット切り替え（off:0, on:1）

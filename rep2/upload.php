@@ -118,7 +118,9 @@ ob_start();
 
 try {
     $uploader = new P2DropboxUploader(
-        $_conf['dropbox_auth_json'], $_conf['p2name'], '/rep2/'
+        $_conf['dropbox_auth_json'],
+        $_conf['p2name'],
+        $_conf['expack.dropbox.upload_prefix']
     );
 } catch (Exception $e) {
     $uploader = null;
