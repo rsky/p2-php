@@ -287,6 +287,8 @@ function p2_init()
 
     // }}}
 
+    $_conf['dropbox_auth_json'] = P2_CONFIG_DIR . '/dropbox.json';
+
     include P2_CONFIG_DIR . '/empty_style.php';
     include P2_LIB_DIR . '/bootstrap.php';
 }

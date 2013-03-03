@@ -3,6 +3,7 @@
  * rep2 - レス書き込みフォーム
  */
 
+define('P2_SESSION_CLOSE_AFTER_AUTHENTICATION', 0);
 require_once __DIR__ . '/../init.php';
 
 $_login->authorize(); // ユーザ認証

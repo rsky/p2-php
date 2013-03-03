@@ -146,11 +146,11 @@ if ($_conf['expack.ic2.enabled'] && $_conf['expack.ic2.thread_imagelink']) {
             $cnt = '(?)';
         }
     }
-    $htm['ic2navi'] = '<a href="iv2.php?field=memo&amp;key=' .
-        rawurlencode($aThread->ttitle) .
-        '&amp;session_no_close=1' .
-        '&amp;b=' . ($_conf['iphone'] ? 'i' : 'k') .
-        '">IC2' . $cnt . '</a>';
+    $htm['ic2navi'] = '<a href="iv2.php?field=memo&amp;keyword='
+        . rawurlencode($aThread->ttitle)
+        . '&amp;session_no_close=1'
+        . '&amp;b=' . ($_conf['iphone'] ? 'i' : 'k')
+        . '">IC2' . $cnt . '</a>';
 }
 
 //====================================================================

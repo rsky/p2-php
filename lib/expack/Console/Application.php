@@ -9,6 +9,7 @@ require_once __DIR__ . '/Command/Command.php';
 require_once __DIR__ . '/Command/Archive.php';
 require_once __DIR__ . '/Command/Check.php';
 require_once __DIR__ . '/Command/Update.php';
+require_once __DIR__ . '/Command/DropboxAuth.php';
 
 class Application extends sfConsoleApplication
 {
@@ -23,6 +24,7 @@ class Application extends sfConsoleApplication
             new Command\Archive(),
             new Command\Check(),
             new Command\Update(),
+            new Command\DropboxAuth(),
         ));
     }
 }

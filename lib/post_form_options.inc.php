@@ -324,6 +324,58 @@ if (!$_conf['ktai']) {
 }
 
 // }}}
+// {{{ 画像アップロード
+
+$upload_form = '';
+$upload_mode = null;
+
+if (!$_conf['ktai'] || $_conf['iphone']) {
+    if (file_exists($_conf['dropbox_auth_json'])) {
+        $upload_mode = 'dropbox';
+    }
+}
+
+if ($upload_mode !== null) {
+    if ($_conf['ktai'] || $_conf['iphone']) {
+        $upload_multiple = '';
+        $upload_name = 'upload';
+    } else {
+        $upload_multiple = 'multiple';
+        $upload_name = 'upload[]';
+    }
+    $upload_token = sha1($_conf['p2ua'] . microtime());
+    $_SESSION['upload_token'] = $upload_token;
+        $upload_form = <<<EOP
+<input id="fileupload" type="file" name="{$upload_name}" data-url="upload.php?mode={$upload_mode}&amp;token={$upload_token}" {$upload_multiple}>
+<script type="text/javascript" src="js/jquery-{$_conf['jquery_version']}.min.js"></script>
+<script src="js/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<script>
+$(function () {
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+            var message = $('#MESSAGE');
+            if (typeof data.result.error === 'string' && data.result.error.length) {
+                window.alert(data.result.error);
+            }
+            $.each(data.result.urls, function (index, url) {
+                var oldMessage = message.val();
+                if (oldMessage.length) {
+                    message.val(oldMessage + "\\n" + url);
+                } else {
+                    message.val(url);
+                }
+            });
+        }
+    });
+});
+</script>
+EOP;
+}
+
+// }}}
 
 /*
  * Local Variables:

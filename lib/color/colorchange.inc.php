@@ -118,11 +118,8 @@ class ColorChange
     /**
      *HLSÅ®RGBïœä∑
      */
-    public static function hls2rgb($hls)
+    public static function hls2rgb($h, $l, $s)
     {
-        $args = func_get_args();
-        list($h, $l, $s) = self::getArgs($args, 'H', 'L', 'S');
-
         $h %= 360;
         if ($h < 0) {
             $h += 360;

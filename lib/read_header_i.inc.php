@@ -244,8 +244,9 @@ if ($_conf['expack.ic2.enabled'] && $_conf['expack.ic2.thread_imagelink']) {
     echo '<td colspan="4">';
     echo kspform($aThread);
     echo '</td>';
-    $escaped_url = 'iv2.php?field=memo&amp;key=' . rawurlencode($aThread->ttitle) .
-        "&amp;session_no_close=1{$_conf['k_at_a']}";
+    $escaped_url = 'iv2.php?field=memo&amp;keyword='
+        . rawurlencode($aThread->ttitle)
+        . "&amp;session_no_close=1{$_conf['k_at_a']}";
     echo '<td>';
     if ($_conf['expack.ic2.thread_imagecount']) {
         require_once P2EX_LIB_DIR . '/ic2_getcount.inc.php';

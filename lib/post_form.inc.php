@@ -137,6 +137,7 @@ $htm['post_form'] = <<<EOP
 {$newthread_hidden_ht}{$readnew_hidden_ht}
 {$_conf['detect_hint_input_ht']}{$_conf['k_input_ht']}
 </form>
+{$upload_form}
 {$htm['options_k']}\n
 EOP;
 

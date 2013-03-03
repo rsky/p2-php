@@ -712,7 +712,7 @@ EOTOOLBAR;
     // IC2リンク、件数
     if ($_conf['expack.ic2.enabled'] && $_conf['expack.ic2.thread_imagelink']) {
         $spanid = 'ic2_count_' . sprintf('%u', crc32($aThread->keydat));
-        $ic2navi = '<a href="iv2.php?field=memo&amp;key=' .
+        $ic2navi = '<a href="iv2.php?field=memo&amp;keyword=' .
             rawurlencode($aThread->ttitle) .
             '" target="_blank">キャッシュ画像' .
             ($_conf['expack.ic2.thread_imagecount'] ?

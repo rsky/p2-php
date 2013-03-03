@@ -4,6 +4,7 @@
  * フレーム分割画面、右下部分
  */
 
+define('P2_SESSION_CLOSE_AFTER_AUTHENTICATION', 0);
 require_once __DIR__ . '/../init.php';
 
 $_login->authorize(); // ユーザ認証

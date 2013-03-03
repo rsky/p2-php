@@ -17,12 +17,14 @@ if (!$_conf['expack.ic2.enabled']) {
 }
 
 $enable_zip = false;
+/*
 if (!$_conf['ktai'] && $_conf['expack.ic2.zip']) {
     if (!extension_loaded('zip')) {
         p2die('zip 拡張モジュールがロードされていません。');
     }
     $enable_zip = true;
 }
+*/
 
 if ($_conf['iphone']) {
     $_conf['extra_headers_ht'] .= <<<EOP
@@ -333,7 +335,7 @@ $rows      = ImageCache2_ParameterUtility::getValidValue('rows',   $_defaults['r
 $order     = ImageCache2_ParameterUtility::getValidValue('order',  $_defaults['order']);
 $sort      = ImageCache2_ParameterUtility::getValidValue('sort',   $_defaults['sort'] );
 $field     = ImageCache2_ParameterUtility::getValidValue('field',  $_defaults['field']);
-$key       = ImageCache2_ParameterUtility::getValidValue('keyword',   $_defaults['keyword']);
+$keyword   = ImageCache2_ParameterUtility::getValidValue('keyword',   $_defaults['keyword']);
 $threshold = ImageCache2_ParameterUtility::getValidValue('threshold', $_defaults['threshold'], 'intval');
 $compare   = ImageCache2_ParameterUtility::getValidValue('compare',   $_defaults['compare']);
 $mode      = ImageCache2_ParameterUtility::getValidValue('mode',      $_defaults['mode'], 'intval');
@@ -422,9 +424,9 @@ if (!($threshold == -1 && $compare == '>=')) {
 }
 
 // キーワード検索をするとき
-if ($key !== '') {
-    $keys = explode(' ', ImageCache2_Normalizer::normalize($key, 'CP932', $field == 'memo'));
-    foreach ($keys as $k) {
+if ($keyword !== '') {
+    $keywords = explode(' ', ImageCache2_Normalizer::normalize($keyword, 'CP932', $field == 'memo'));
+    foreach ($keywords as $k) {
         $operator = 'LIKE';
         $wildcard = '%';
         $not = false;
@@ -452,7 +454,7 @@ if ($key !== '') {
         }
         $icdb->whereAddQuoted($field, $operator, $expr);
     }
-    $qfe['keyword']->setValue($key);
+    $qfe['keyword']->setValue($keyword);
 }
 
 // 重複画像をスキップするとき
@@ -468,7 +470,7 @@ $_find_duplicated = 0; // 試験的パラメータ、登録レコード数がこれ以上の画像のみを
 if ($_find_unique || $_find_duplicated > 1) {
     $subq = 'SELECT ' . (($sort == 'ASC') ? 'MIN' : 'MAX') . '(id) FROM ';
     $subq .= $db->quoteIdentifier($ini['General']['table']);
-    if (isset($keys)) {
+    if (isset($keywords)) {
         // サブクエリ内でフィルタリングするので親クエリのWHERE句をパクってきてリセット
         $subq .= $icdb->_query['condition'];
         $icdb->whereAdd();
@@ -687,7 +689,7 @@ if ($all === 0) {
             '_hint' => $_conf['detect_hint'], 'mode' => $mode,
             'page' => $page, 'cols' => $cols, 'rows' => $rows,
             'order' => $order, 'sort' => $sort,
-            'field' => $field, 'keyword' => $key,
+            'field' => $field, 'keyword' => $keyword,
             'compare' => $compare, 'threshold' => $threshold,
             'thumbtype' => $thumbtype
         );
@@ -970,7 +972,7 @@ $qf->updateAttributes(array('method' => 'get')); // リクエストをPOSTでも受け入れ
         'results' => '10',
         'placeholder' => '',
     );
-    $qfe['key']->updateAttributes($input_type_search_attributes);
+    $qfe['keyword']->updateAttributes($input_type_search_attributes);
 }*/
 $qf->accept($r);
 $qfObj = $r->toObject();

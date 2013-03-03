@@ -444,9 +444,11 @@ EOP;
 
 // IC2リンク、件数
 if ($_conf['expack.ic2.enabled'] && $_conf['expack.ic2.thread_imagelink']) {
-    $htm['ic2navi'] = '<a href="iv2.php?field=memo&amp;key=' . rawurlencode($aThread->ttitle) . '" target="_blank">キャッシュ画像' .
-    ($_conf['expack.ic2.thread_imagecount'] ? '<span id="ic2_count_h"></span>' : '') .
-    '</a> ';
+    $htm['ic2navi'] = '<a href="iv2.php?field=memo&amp;keyword='
+        . rawurlencode($aThread->ttitle)
+        . '" target="_blank">キャッシュ画像'
+        . ($_conf['expack.ic2.thread_imagecount'] ? '<span id="ic2_count_h"></span>' : '')
+        . '</a> ';
 }
 
 if (empty($_GET['renzokupop']) && ($aThread->rescount || (!empty($_GET['one']) && !$aThread->diedat))) {
