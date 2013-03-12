@@ -3,8 +3,6 @@
  * rep2expack - HTML_QuickFormのカスタムルール
  */
 
-require_once 'HTML/QuickForm/Rule.php';
-
 // {{{ ImageCache2_QuickForm_Rule_NumberInRange
 
 /**

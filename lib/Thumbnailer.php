@@ -4,8 +4,6 @@
  * PHP Version 5
  */
 
-require_once 'PEAR.php';
-
 // {{{ Thumbnailer
 
 /**

@@ -3,6 +3,9 @@
 namespace expack\Console;
 
 use Symfony\Component\Console\Application as sfConsoleApplication;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use expack\Console\Command;
 
 require_once __DIR__ . '/Command/Command.php';
@@ -26,5 +29,17 @@ class Application extends sfConsoleApplication
             new Command\Update(),
             new Command\DropboxAuth(),
         ));
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Console\Application::doRun()
+     */
+    public function doRun(InputInterface $input, OutputInterface $output)
+    {
+        $noticeStyle = new OutputFormatterStyle('black', 'yellow');
+        $output->getFormatter()->setStyle('notice', $noticeStyle);
+
+        return parent::doRun($input, $output);
     }
 }

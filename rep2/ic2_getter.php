@@ -19,9 +19,6 @@ if (!$_conf['expack.ic2.enabled']) {
 // {{{ 初期化
 
 // ライブラリ読み込み
-require_once 'HTML/QuickForm.php';
-require_once 'HTML/QuickForm/Renderer/ObjectFlexy.php';
-require_once 'HTML/Template/Flexy.php';
 require_once P2EX_LIB_DIR . '/ImageCache2/bootstrap.php';
 
 // ポップアップウインドウ？

@@ -7,7 +7,7 @@
 // バージョン情報
 $_conf = array(
     'p2name'    => 'rep2-expack',   // rep2の名前
-    'p2version' => '130405.0520',   // rep2のバージョン
+    'p2version' => '130313.0030',   // rep2のバージョン
 );
 
 $_conf['p2ua'] = "{$_conf['p2name']}/{$_conf['p2version']}";
@@ -179,9 +179,6 @@ function p2_init()
     include P2_LIB_DIR . '/wiki/P2UtilWiki.php';
 
     if ($debug) {
-        if (!class_exists('Benchmark_Profiler', false)) {
-            include 'Benchmark/Profiler.php';
-        }
         $profiler = new Benchmark_Profiler(true);
         // p2_print_memory_usage();
         register_shutdown_function('p2_print_memory_usage');

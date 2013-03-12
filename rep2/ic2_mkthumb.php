@@ -16,7 +16,6 @@ if (!$_conf['expack.ic2.enabled']) {
 // }}}
 
 /*if ($GLOBALS['debug']) {
-    require_once 'Var_Dump.php';
     Var_Dump::display($_GET);
     exit;
 }*/

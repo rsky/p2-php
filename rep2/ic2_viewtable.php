@@ -19,7 +19,6 @@ if (!$_conf['expack.ic2.enabled']) {
 // {{{ ‰Šú‰»
 
 // ƒ‰ƒCƒuƒ‰ƒŠ“Ç‚İ‚İ
-require_once 'HTML/Template/Flexy.php';
 require_once P2EX_LIB_DIR . '/ImageCache2/bootstrap.php';
 
 // }}}

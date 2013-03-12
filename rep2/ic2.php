@@ -19,7 +19,6 @@ if (!$_conf['expack.ic2.enabled']) {
 // {{{ 初期化
 
 // ライブラリ読み込み
-require_once 'HTTP/Client.php';
 require_once P2EX_LIB_DIR . '/ImageCache2/bootstrap.php';
 
 // 受け付けるMIMEタイプ
@@ -689,16 +688,6 @@ function ic2_display($url, $params)
             readfile($url);
             exit;
         default:
-            if (!class_exists('HTML_Template_Flexy', false)) {
-                require 'HTML/Template/Flexy.php';
-            }
-            if (!class_exists('HTML_QuickForm', false)) {
-                require 'HTML/QuickForm.php';
-            }
-            if (!class_exists('HTML_QuickForm_Renderer_ObjectFlexy', false)) {
-                require 'HTML/QuickForm/Renderer/ObjectFlexy.php';
-            }
-
             if (isset($uri)) {
                 $img_o = 'uri';
                 $img_p = $uri;

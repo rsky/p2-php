@@ -10,7 +10,6 @@ require_once __DIR__ . '/../init.php';
 $_login->authorize();
 
 require_once P2_LIB_DIR . '/fontconfig.inc.php';
-require_once 'HTML/Template/Flexy.php';
 
 $flexy_options = array(
     'templateDir' => './skin',

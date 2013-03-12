@@ -1,7 +1,5 @@
 <?php
 
-require_once 'PEAR.php';
-
 // {{{ P2Exception
 
 /**

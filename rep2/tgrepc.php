@@ -10,9 +10,6 @@
 define('P2_OUTPUT_XHTML', 1);
 
 require_once __DIR__ . '/../init.php';
-require_once 'Cache/Lite.php';
-require_once 'HTTP/Client.php';
-require_once 'Pager/Pager.php';
 
 $_login->authorize();
 

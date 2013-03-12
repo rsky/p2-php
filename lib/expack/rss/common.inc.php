@@ -3,8 +3,6 @@
  * rep2expack - RSSユーティリティ関数
  */
 
-require_once 'PEAR.php';
-
 // {{{ rss_get_save_path()
 
 /**

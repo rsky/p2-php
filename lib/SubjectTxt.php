@@ -86,10 +86,6 @@ class SubjectTxt
         }
 
         // DL
-        if (!class_exists('HTTP_Request', false)) {
-            require 'HTTP/Request.php';
-        }
-
         $params = array();
         $params['timeout'] = $_conf['http_conn_timeout'];
         $params['readTimeout'] = array($_conf['http_read_timeout'], 0);

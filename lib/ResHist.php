@@ -3,8 +3,6 @@
  * rep2 - ‘‚«‚İ—š—ğ‚ÌƒNƒ‰ƒX
  */
 
-require_once 'Pager/Pager.php';
-
 // {{{ ResHist
 
 /**

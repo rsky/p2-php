@@ -360,9 +360,6 @@ function p2_realpath($path)
     if (file_exists($path)) {
         return realpath($path);
     }
-    if (!class_exists('File_Util', false)) {
-        require 'File/Util.php';
-    }
     return File_Util::realPath($path);
 }
 

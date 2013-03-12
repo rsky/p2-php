@@ -1702,9 +1702,6 @@ EOF;
             $params['proxy_host'] = $_conf['proxy_host'];
             $params['proxy_port'] = $_conf['proxy_port'];
         }
-        if (!class_exists('HTTP_Request', false)) {
-            require 'HTTP/Request.php';
-        }
         $url = "http://{$this->host}/{$this->bbs}/dat/{$this->key}.dat";
         $req = new HTTP_Request($url, $params);
         $req->setMethod('GET');

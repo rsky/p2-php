@@ -1,5 +1,4 @@
 <?php
-require_once 'HTTP/Client.php';
 
 // {{{ P2Client
 

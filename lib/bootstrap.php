@@ -4,8 +4,6 @@
  * conf/conf.inc.php の p2_init() から読み込まれる。
  */
 
-require_once 'Net/UserAgent/Mobile.php';
-
 p2_rewrite_vars_for_proxy();
 
 // {{{ ユーザー設定 読込

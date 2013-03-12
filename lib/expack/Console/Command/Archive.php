@@ -51,10 +51,8 @@ class Archive extends Command
             return 1;
         }
 
-        foreach (array('p2pear/docs', 'p2pear/includes', 'vendor') as $directory) {
-            if (!$this->copyDirectory($directory, $output, $verbose)) {
-                return 1;
-            }
+        if (!$this->copyDirectory('vendor', $output, $verbose)) {
+            return 1;
         }
 
         if (!$this->archive($output, $verbose)) {
@@ -129,11 +127,22 @@ class Archive extends Command
      */
     private function copyDirectory($directory, OutputInterface $output, $verbose = false)
     {
+        $target = $this->getExportPrefix() . '/' . $directory;
         $command = 'cp -R' . ($verbose ? 'v' : '')
                  . ' ' . escapeshellarg($directory)
-                 . ' ' . escapeshellarg($this->getExportPrefix() . '/' . $directory);
+                 . ' ' . escapeshellarg($target);
 
-        return $this->execCommand($command, $output) === 0;
+        if ($this->execCommand($command, $output) !== 0) {
+            return false;
+        }
+
+        if (is_executable('/usr/bin/xattr')) {
+            $command = '/usr/bin/xattr -cr ' . escapeshellarg($target);
+
+            return $this->execCommand($command, $output);
+        }
+
+        return true;
     }
 
     /**

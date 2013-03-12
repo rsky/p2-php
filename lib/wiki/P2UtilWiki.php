@@ -39,9 +39,6 @@ class P2UtilWiki
 
     public static function getResponseCode($url)
     {
-        if (!class_exists('HTTP_Client;', false)) {
-            require 'HTTP/Client.php';
-        }
         $client = new HTTP_Client();
         $client->setRequestParameter('timeout', $timeout);
         $client->setDefaultHeader('User-Agent', 'Monazilla/1.00');

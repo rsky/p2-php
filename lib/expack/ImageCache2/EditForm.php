@@ -1,5 +1,4 @@
 <?php
-require_once 'HTML/Template/Flexy/Element.php';
 
 // {{{ ImageCache2_EditForm
 

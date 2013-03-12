@@ -53,10 +53,6 @@ if ($_conf['view_forced_by_query']) {
 // {{{ ‰Šú‰»
 
 // ƒ‰ƒCƒuƒ‰ƒŠ“Ç‚İ‚İ
-require_once 'HTML/QuickForm.php';
-require_once 'HTML/QuickForm/Renderer/ObjectFlexy.php';
-require_once 'HTML/Template/Flexy.php';
-require_once 'HTML/Template/Flexy/Element.php';
 require_once P2EX_LIB_DIR . '/ImageCache2/bootstrap.php';
 require_once P2EX_LIB_DIR . '/ImageCache2/QuickForm/Rules.php';
 

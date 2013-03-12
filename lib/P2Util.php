@@ -1650,10 +1650,6 @@ ERR;
      */
     static public function getWebPage($url, &$error_msg, $timeout = 15)
     {
-        if (!class_exists('HTTP_Request', false)) {
-            require 'HTTP/Request.php';
-        }
-
         $params = array("timeout" => $timeout);
 
         if (!empty($_conf['proxy_use'])) {
