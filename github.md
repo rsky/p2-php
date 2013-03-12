@@ -13,7 +13,6 @@ layout: default
 
 ### 依存ライブラリをダウンロード
 
-    git submodule update --init
     curl -O http://getcomposer.org/composer.phar
     php -d detect_unicode=0 composer.phar install
 
@@ -31,7 +30,5 @@ layout: default
 これは下記コマンドを個別に実行するのと等価です。
 
     git pull
-    git submodule foreach 'git fetch origin'
-    git submodule update
     php -d detect_unicode=0 composer.phar selfupdate
     php -d detect_unicode=0 composer.phar update
