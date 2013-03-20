@@ -35,5 +35,15 @@
     "symfony/yaml": "2.2.*",
     "doctrine/orm": "2.3.*",
     "dropbox/dropbox-sdk": "dev-master"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php ./scripts/fix-pear-pager.php",
+      "php ./composer.phar dump-autoload"
+    ],
+    "post-update-cmd": [
+      "php ./scripts/fix-pear-pager.php",
+      "php ./composer.phar dump-autoload"
+    ]
   }
 }

@@ -139,7 +139,7 @@ class Archive extends Command
         if (is_executable('/usr/bin/xattr')) {
             $command = '/usr/bin/xattr -cr ' . escapeshellarg($target);
 
-            return $this->execCommand($command, $output);
+            return $this->execCommand($command, $output) === 0;
         }
 
         return true;

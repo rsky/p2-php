@@ -67,7 +67,7 @@ function _read_filter_setup()
 _read_filter_setup();
 
 // read.php‚Éˆ—‚ğ“n‚·
-include P2_BASE_DIR . '/read.php';
+include P2_WWW_DIR . '/read.php';
 
 /*
  * Local Variables:

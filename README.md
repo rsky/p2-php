@@ -16,8 +16,7 @@
   cd p2-php</pre>
 
 2. 依存ライブラリをダウンロード
-  <pre>git submodule update --init
-  curl -O http://getcomposer.org/composer.phar
+  <pre>curl -O http://getcomposer.org/composer.phar
   php -d detect_unicode=0 composer.phar install</pre>
 
 3. Webサーバが書き込めるようにディレクトリのアクセス権をセット  
@@ -86,9 +85,7 @@ Webブラウザから変更できない項目は [conf/conf_admin.inc.php](https
 これは下記コマンドを個別に実行するのと等価です。
 
     git pull
-    git submodule foreach 'git fetch origin'
-    git submodule update
-    php -d detect_unicode=0 composer.phar update
+    php -d detect_unicode=0 composer.phar self-update
     php -d detect_unicode=0 composer.phar update
 
 
