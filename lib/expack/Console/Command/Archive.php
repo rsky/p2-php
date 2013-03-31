@@ -11,6 +11,11 @@ class Archive extends Command
     const BUILD_DIR = 'build';
     const ARCHIVE_NAME_PREFIX = 'rep2ex-';
 
+    const ERR_PREPARE = 1;
+    const ERR_EXPORT  = 2;
+    const ERR_CLEANUP = 3;
+    const ERR_ARCHIVE = 4;
+
     /**
      * (non-PHPdoc)
      * @see Symfony\Component\Console\Command\Command::configure()
@@ -22,7 +27,6 @@ class Archive extends Command
         ->setDescription('Makes an archive')
         ->setDefinition(array(
             new InputOption('branch', null,  InputOption::VALUE_REQUIRED, 'Specify branch, tag or commit'),
-            new InputOption('clear', null,  InputOption::VALUE_NONE, 'Remove targets befor export'),
         ));
     }
 
@@ -34,29 +38,35 @@ class Archive extends Command
     {
         $verbose = (bool)$input->getOption('verbose');
 
-        if ((bool)$input->getOption('clear')) {
-            if (!$this->clear($output, $verbose)) {
-                return 1;
-            }
-        }
-
         $branch = $input->getOption('branch');
         if ($branch) {
             if (!$this->checkout($branch, $output, $verbose)) {
-                return 1;
+                return self::ERR_PREPARE;
             }
         }
 
+        if (!$this->clear($output, $verbose)) {
+            return self::ERR_PREPARE;
+        }
+
         if (!$this->exportRep2($output, $verbose)) {
-            return 1;
+            return self::ERR_EXPORT;
         }
 
         if (!$this->copyDirectory('vendor', $output, $verbose)) {
-            return 1;
+            return self::ERR_EXPORT;
+        }
+
+        if (!$this->clearExtendedAttributes($output, $verbose)) {
+            return self::ERR_CLEANUP;
+        }
+
+        if (!$this->deleteVcsDirectories($output, $verbose)) {
+            return self::ERR_CLEANUP;
         }
 
         if (!$this->archive($output, $verbose)) {
-            return 1;
+            return self::ERR_ARCHIVE;
         }
 
         $output->writeln('<comment>Success</comment>');
@@ -136,13 +146,48 @@ class Archive extends Command
             return false;
         }
 
+        return true;
+    }
+
+    /**
+     * Removes all extended attributes
+     *
+     * @param OutputInterface $output
+     * @param bool $verbose
+     *
+     * @return bool
+     */
+    private function clearExtendedAttributes(OutputInterface $output, $verbose = false)
+    {
         if (is_executable('/usr/bin/xattr')) {
+            $target = $this->getExportPrefix();
             $command = '/usr/bin/xattr -cr ' . escapeshellarg($target);
 
             return $this->execCommand($command, $output) === 0;
         }
 
         return true;
+    }
+
+    /**
+     * Removes all vcs directories
+     *
+     * @param OutputInterface $output
+     * @param bool $verbose
+     *
+     * @return bool
+     */
+    private function deleteVcsDirectories(OutputInterface $output, $verbose = false)
+    {
+        $target = $this->getExportPrefix();
+        $command = 'find ' . escapeshellarg($target) . ' -type d \('
+                 . ' -name .CVS -or -name .git -or -name .hg -or -name .svn'
+                 . ' \) -print0 | xargs -0 rm -rf';
+        if ($verbose) {
+            $command .= 'v';
+        }
+
+        return $this->execCommand($command, $output) === 0;
     }
 
     /**
