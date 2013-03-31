@@ -2,8 +2,8 @@
 title: rep2 機能拡張パック
 layout: home
 download_site: http://page2.skr.jp/rep2/archives/
-version_date: '130313'
-version_time: '0210'
+version_date: '130331'
+version_time: '1925'
 ---
 # rep2 機能拡張パック
 
@@ -37,7 +37,7 @@ version_time: '0210'
 
 ## Links
 
-* ソフトウェア板 [rep2 part54](http://anago.2ch.net/test/read.cgi/software/1347147831/)
+* ソフトウェア板 [rep2 part55](http://anago.2ch.net/test/read.cgi/software/1364360589/)
 * 新・mac板 [★2ﾁｬﾝviewer"rep2"ﾉｽﾚﾉエイリアス part10](http://anago.2ch.net/test/read.cgi/mac/1237574420/)
 * [公式p2](http://p2.2ch.net/)
 
