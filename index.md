@@ -3,7 +3,7 @@ title: rep2 機能拡張パック
 layout: home
 download_site: http://page2.skr.jp/rep2/archives/
 version_date: '130331'
-version_time: '1925'
+version_time: '2233'
 ---
 # rep2 機能拡張パック
 
