@@ -2,6 +2,7 @@ composer.lock
 composer.phar
 ttf
 vendor
+data
 
 # Compiled source #
 ###################
